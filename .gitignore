@@ -1,0 +1,29 @@
+# System Files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Temporary files
+temp/
+tmp/
+
+# Environment
+.env
+.env.local
+
+# Dependencies (if added later)
+node_modules/
+package-lock.json
+
+# Build outputs (if added later)
+dist/
+build/
+
+# User data (optional - uncomment if you don't want to commit user invoices)
+# user-data/

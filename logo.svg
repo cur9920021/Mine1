@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="80" viewBox="0 0 200 80">
+  <!-- Background -->
+  <rect width="200" height="80" fill="#f8f9fa" rx="5"/>
+  
+  <!-- Icon - Fabric/Curtain representation -->
+  <g transform="translate(20, 15)">
+    <!-- Curtain rod -->
+    <rect x="0" y="0" width="40" height="3" fill="#a1846c" rx="1.5"/>
+    
+    <!-- Curtain folds -->
+    <path d="M 5 3 Q 7 15, 5 30 Q 3 35, 5 45" fill="none" stroke="#8b7355" stroke-width="2.5"/>
+    <path d="M 13 3 Q 15 15, 13 30 Q 11 35, 13 45" fill="none" stroke="#a1846c" stroke-width="2.5"/>
+    <path d="M 21 3 Q 23 15, 21 30 Q 19 35, 21 45" fill="none" stroke="#8b7355" stroke-width="2.5"/>
+    <path d="M 29 3 Q 31 15, 29 30 Q 27 35, 29 45" fill="none" stroke="#a1846c" stroke-width="2.5"/>
+    <path d="M 37 3 Q 39 15, 37 30 Q 35 35, 37 45" fill="none" stroke="#8b7355" stroke-width="2.5"/>
+    
+    <!-- Fabric texture lines -->
+    <path d="M 8 10 L 12 10" stroke="#d4c5b9" stroke-width="1" opacity="0.6"/>
+    <path d="M 24 15 L 28 15" stroke="#d4c5b9" stroke-width="1" opacity="0.6"/>
+    <path d="M 16 20 L 20 20" stroke="#d4c5b9" stroke-width="1" opacity="0.6"/>
+  </g>
+  
+  <!-- Company name -->
+  <text x="75" y="35" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#2c3e50">ALIGN</text>
+  
+  <!-- Tagline -->
+  <text x="75" y="55" font-family="Arial, sans-serif" font-size="11" fill="#a1846c" letter-spacing="1">Fabrics &amp; Curtains</text>
+</svg>
