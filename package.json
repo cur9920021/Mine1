@@ -1,0 +1,21 @@
+{
+  "name": "align-invoice-app",
+  "version": "1.0.0",
+  "description": "Sales Invoice Web Application for Align Fabrics & Curtains",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "npx http-server -p 8000 -o"
+  },
+  "keywords": [
+    "invoice",
+    "sales",
+    "pdf",
+    "fabrics",
+    "curtains"
+  ],
+  "author": "Align Fabrics & Curtains",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

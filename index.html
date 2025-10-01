@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Align Fabrics & Curtains - Invoice Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Welcome Animation Screen -->
+    <div id="welcomeScreen" class="welcome-screen">
+        <div class="fireworks-container">
+            <div class="firework"></div>
+            <div class="firework"></div>
+            <div class="firework"></div>
+            <div class="firework"></div>
+            <div class="firework"></div>
+        </div>
+        <h1 class="welcome-text">WELCOME TO ALIGN</h1>
+        <button id="skipBtn" class="skip-btn">Skip</button>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" class="main-app" style="display: none;">
+        <!-- Dashboard View -->
+        <div id="dashboardView" class="view active">
+            <div class="dashboard-header">
+                <div class="header-top">
+                    <img src="logo.svg" alt="Align Fabrics & Curtains" class="dashboard-logo" onerror="this.style.display='none'">
+                    <h1>Invoice Management System</h1>
+                </div>
+                <button id="createNewInvoiceBtn" class="btn btn-primary">+ Create New Invoice</button>
+            </div>
+
+            <div class="dashboard-controls">
+                <input type="text" id="searchInput" placeholder="Search invoices..." class="search-input">
+                <select id="sortSelect" class="sort-select">
+                    <option value="date-desc">Date (Newest First)</option>
+                    <option value="date-asc">Date (Oldest First)</option>
+                    <option value="number-desc">Invoice # (Desc)</option>
+                    <option value="number-asc">Invoice # (Asc)</option>
+                    <option value="client">Client Name</option>
+                </select>
+            </div>
+
+            <div id="invoicesList" class="invoices-list"></div>
+        </div>
+
+        <!-- Invoice Form View -->
+        <div id="formView" class="view">
+            <div class="form-header">
+                <button id="backToDashboard" class="btn btn-secondary">← Back to Dashboard</button>
+                <h2 id="formTitle">Create New Invoice</h2>
+                <button id="saveInvoiceBtn" class="btn btn-success">Save Invoice</button>
+            </div>
+
+            <div class="form-container">
+                <div class="form-section">
+                    <h3>Invoice Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Invoice Number *</label>
+                            <input type="text" id="invoiceNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Invoice Date *</label>
+                            <input type="date" id="invoiceDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Account No</label>
+                            <input type="text" id="accountNo">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Client Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Company *</label>
+                            <input type="text" id="clientCompany" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Client Name *</label>
+                            <input type="text" id="clientName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Project</label>
+                            <input type="text" id="clientProject">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input type="text" id="clientLocation">
+                        </div>
+                        <div class="form-group">
+                            <label>Area</label>
+                            <input type="text" id="clientArea">
+                        </div>
+                        <div class="form-group">
+                            <label>Designer</label>
+                            <input type="text" id="clientDesigner">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Contact Person</label>
+                            <input type="text" id="contactPerson">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Number</label>
+                            <input type="tel" id="contactNumber">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Invoice Items</h3>
+                    <div class="items-table-container">
+                        <table class="items-table" id="itemsTable">
+                            <thead>
+                                <tr>
+                                    <th>Item Code</th>
+                                    <th>Item Type</th>
+                                    <th>Item Name / Description</th>
+                                    <th>Item Color</th>
+                                    <th>Quantity</th>
+                                    <th>Unit Price</th>
+                                    <th>Line Total</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="itemsTableBody">
+                            </tbody>
+                        </table>
+                        <button id="addItemBtn" class="btn btn-secondary">+ Add Item</button>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Calculations</h3>
+                    <div class="calculations-grid">
+                        <div class="calc-row">
+                            <label>Subtotal:</label>
+                            <span id="subtotalDisplay" class="calc-value">0.00</span>
+                        </div>
+                        
+                        <div class="calc-row discount-section">
+                            <label>Discount:</label>
+                            <div class="discount-controls">
+                                <select id="discountType">
+                                    <option value="none">No Discount</option>
+                                    <option value="percent">Percentage</option>
+                                    <option value="fixed">Fixed Amount</option>
+                                </select>
+                                <input type="number" id="discountValue" min="0" step="0.01" placeholder="0">
+                                <span id="discountAmountDisplay" class="calc-value">0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="calc-row">
+                            <label>After Discount:</label>
+                            <span id="afterDiscountDisplay" class="calc-value">0.00</span>
+                        </div>
+
+                        <div class="calc-row checkbox-row">
+                            <label>
+                                <input type="checkbox" id="applyVAT">
+                                Apply VAT 14%
+                            </label>
+                            <span id="vatDisplay" class="calc-value">0.00</span>
+                        </div>
+
+                        <div class="calc-row checkbox-row">
+                            <label>
+                                <input type="checkbox" id="applyDiscountTax">
+                                Apply Discount Tax 1%
+                            </label>
+                            <span id="discountTaxDisplay" class="calc-value">0.00</span>
+                        </div>
+
+                        <div class="calc-row">
+                            <label>Transport / Shipping:</label>
+                            <input type="number" id="transportCost" min="0" step="0.01" value="0" class="transport-input">
+                        </div>
+
+                        <div class="calc-row net-order">
+                            <label>Net Order (Final Payable):</label>
+                            <span id="netOrderDisplay" class="calc-value">0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Payment Terms</h3>
+                    <textarea id="paymentTerms" rows="2" placeholder="Default: 75% down payment, 25% upon delivery">75% down payment, 25% upon delivery</textarea>
+                </div>
+
+                <div class="form-section">
+                    <h3>Notes / Terms & Conditions</h3>
+                    <textarea id="notesTerms" rows="4" placeholder="Additional notes and terms..."></textarea>
+                </div>
+
+                <div class="form-section">
+                    <h3>Signature & Stamp</h3>
+                    <div class="signature-upload">
+                        <input type="file" id="signatureUpload" accept="image/*">
+                        <label for="signatureUpload" class="upload-label">Upload Signature/Stamp</label>
+                        <div id="signaturePreview" class="signature-preview"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invoice Preview/Print View -->
+        <div id="invoiceView" class="view">
+            <div class="invoice-actions">
+                <button id="backFromInvoice" class="btn btn-secondary">← Back</button>
+                <div>
+                    <button id="editInvoiceBtn" class="btn btn-primary">Edit</button>
+                    <button id="downloadPDFBtn" class="btn btn-success">Download PDF</button>
+                </div>
+            </div>
+            
+            <div id="invoicePreview" class="invoice-preview">
+                <!-- Invoice content will be dynamically generated here -->
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
